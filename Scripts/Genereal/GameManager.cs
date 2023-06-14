@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     public TextMeshProUGUI healthAndPointsText;
 
-    [Header("Events")]
-
-    public UnityEvent onMoneyChanged;
 
     //Singleton
     public static GameManager instance;
@@ -36,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateHealthAndPointsText()
     {
-        healthAndPointsText.text = $"Health: {health}\nMoney: ${points}";
+        healthAndPointsText.text = $"Health: {health}\nPoints: {points}";
     }
 
     public void TakeDamage(int amount)
