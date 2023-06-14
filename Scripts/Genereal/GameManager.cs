@@ -4,19 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 
-
 public class GameManager : MonoBehaviour
 {
     //Variables
-    public int health;
     public int points;
+    public int health;
     private bool gameAcive;
 
 
     [Header("Components")]
-    public TextMeshProUGUI healthText;
-    public TextMeshProUGUI pointText;
-    public EndScreenUI endScreen;
+    public TextMeshProUGUI healthAndPointsText;
 
     [Header("Events")]
 
@@ -26,52 +23,42 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
 
-    /*private void Awake()
+    private void Awake()
     {
         instance = this;
-    }*/
+    }
 
     private void Start()
     {
         gameAcive = true;
-        UpdateHealthText();
-        UpdatePointText();
+        UpdateHealthAndPointsText();
     }
 
-    void UpdateHealthText()
+    void UpdateHealthAndPointsText()
     {
-        healthText.text = $"Health: {health}";
+        healthAndPointsText.text = $"Health: {health}\nMoney: ${points}";
     }
-
-    void UpdatePointText()
-    {
-        pointText.text = $"Points: {points}";
-    }
-
-
 
     public void TakeDamage(int amount)
     {
         health -= amount;
-        UpdateHealthText();
+        UpdateHealthAndPointsText();
 
         if (health <= 0)
         {
             GameOver();
-            pointText.text = $"Points: {points == 0}";
         }
     }
 
     void GameOver()
     {
         gameAcive = false;
-        endScreen.gameObject.SetActive(true);
+
     }
 
     void WinGame()
     {
         gameAcive = false;
-        endScreen.gameObject.SetActive(true);
     }
 
     /*public void OnEnemyDestroyed()
@@ -79,7 +66,7 @@ public class GameManager : MonoBehaviour
 
         if (!gameAcive)
             return;
-        if (waverSpawner.remainingEnemies == 0 && waverSpawner.curWave == waverSpawner.waves.Length)
+        if ()
         {
             WinGame();
         }
