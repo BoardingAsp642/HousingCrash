@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     //Variables
     public int points;
     public int health;
-    private bool gameAcive;
+    public bool gameActive;
 
 
     [Header("Components")]
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameAcive = true;
+        gameActive = true;
         UpdateHealthAndPointsText();
     }
 
@@ -52,13 +52,13 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        gameAcive = false;
+        gameActive = false;
 
     }
 
     void WinGame()
     {
-        gameAcive = false;
+        gameActive = false;
     }
 
     /*public void OnEnemyDestroyed()
