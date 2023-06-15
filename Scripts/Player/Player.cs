@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
     private GameManager gameManager;
     //General
     public AudioClip audioSource;
+    public Animator animator;
+    private bool hasCollided = false;
 
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
 
     }
 
@@ -49,6 +52,8 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            animator.SetTrigger("StumbleTrigger");
+            hasCollided = true;
         }
     }
 
