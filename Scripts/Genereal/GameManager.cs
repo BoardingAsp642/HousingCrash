@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int points;
     public int health;
     public bool gameActive;
+
 
 
     [Header("Components")]
@@ -23,13 +25,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
     private void Start()
     {
         gameActive = true;
         UpdateHealthAndPointsText();
+
     }
+
+    // Called when the player loses
+
+
 
     void UpdateHealthAndPointsText()
     {
@@ -49,14 +57,17 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        gameActive = false;
 
+        gameActive = false;
+        SceneManager.LoadScene("EndScreem");
     }
 
-    void WinGame()
+    public void AddPoint()
     {
-        gameActive = false;
+        points += 5;
+        UpdateHealthAndPointsText();
     }
+
 
     /*public void OnEnemyDestroyed()
     {

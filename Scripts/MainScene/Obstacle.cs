@@ -30,5 +30,9 @@ public class Obstacle : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("House"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

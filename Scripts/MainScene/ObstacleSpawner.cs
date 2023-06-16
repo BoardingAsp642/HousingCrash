@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    //Variables
+    // Variables
     public GameObject obstaclePrefab;
     public float spawnDelay;
-    public float spawnInterval;
+    public float minSpawnInterval;
+    public float maxSpawnInterval;
     private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        InvokeRepeating("SpawnObstacle", spawnDelay, spawnInterval = Random.Range(0, 0.5f));
+        Invoke("StartSpawning", spawnDelay);
     }
 
     // Update is called once per frame
@@ -24,15 +24,19 @@ public class ObstacleSpawner : MonoBehaviour
 
     }
 
-    private void SpawnObstacle()
+    private void StartSpawning()
     {
-
         if (gameManager.gameActive == true)
         {
-            Vector3 spawnPoint = new Vector2(transform.position.x, transform.position.y);
-            Instantiate(obstaclePrefab, spawnPoint, obstaclePrefab.transform.rotation);
-
-
+            SpawnObstacle();
+            float randomInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
+            Invoke("StartSpawning", randomInterval);
         }
+    }
+
+    private void SpawnObstacle()
+    {
+        Vector3 spawnPoint = new Vector2(transform.position.x, transform.position.y);
+        Instantiate(obstaclePrefab, spawnPoint, obstaclePrefab.transform.rotation);
     }
 }
