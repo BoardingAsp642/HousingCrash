@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+        }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
             animator.SetTrigger("StumbleTrigger");
             hasCollided = true;
         }

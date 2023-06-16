@@ -9,11 +9,13 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnDelay;
     public float spawnInterval;
     private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        InvokeRepeating("spawnGround", spawnDelay, spawnInterval);
+        InvokeRepeating("SpawnObstacle", spawnDelay, spawnInterval = Random.Range(0, 0.5f));
     }
 
     // Update is called once per frame
@@ -24,10 +26,13 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
+
         if (gameManager.gameActive == true)
         {
             Vector3 spawnPoint = new Vector2(transform.position.x, transform.position.y);
             Instantiate(obstaclePrefab, spawnPoint, obstaclePrefab.transform.rotation);
+
+
         }
     }
 }
